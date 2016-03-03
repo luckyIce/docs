@@ -1,0 +1,75 @@
+this is a comment
+本地和远程主机传输文件使用scp命令
+rsync命令也可以并且更好用
+ln usage
+示例：#ln -s /root/a.txt /opt/aa
+格式：#ln -s 源文件 目标位置(或目标文件名)
+
+注意：如果没有采用绝对路径的话，有可能生成的链接文件无法正确找到链接目标。可以测试下。
+NAME
+       ldd - print shared library dependencies
+
+SYNOPSIS
+       ldd [OPTION]... FILE...  #ldd a.out can list the library it depents
+
+NAME
+       dpkg - package manager for Debian
+
+SYNOPSIS
+       dpkg [option...] action
+
+DESCRIPTION
+       dpkg is a tool to install, build, remove and  manage
+       Debian  packages. The primary and more user-friendly
+...skipping...
+              -S, --search filename-search-pattern...
+                  Search for a filename from installed packages.#dpkg -S(upper case) libc6
+
+.The echo command has only one optional flag: -n, which means "Do not print the trailing newline character." Experiment with echo. Run the following commands, guessing before running each what the output will be:
+$ echo "hello world"
+$ echo hello world
+$ echo -n hello world
+$ echo hello world -n
+$ echo "hello world" -n
+$ echo "-n hello world"
+
+
+
+
+Solution
+
+
+The following is the expected output of the above commands:
+$ echo "hello world"
+hello world
+$ echo hello world
+hello world
+$ echo -n hello world
+hello world
+$ echo hello world -n
+hello world -n
+$ echo "hello world" -n
+hello world -n
+$ echo "-n hello world"
+-n hello world
+The above commands illustrate the following ideas:
+1.Arguments can be wrapped in quotes, but don't always have to be wrapped.
+2.Flags come before other arguments.
+3.Misplaced arguments and/or flags change the output.
+DU(1)                   User Commands                  DU(1)
+
+
+
+NAME
+       du - estimate file space usage
+
+SYNOPSIS
+       du [OPTION]... [FILE]...
+       du [OPTION]... --files0-from=F
+
+DESCRIPTION
+       Summarize  disk  usage  of each FILE, recursively for
+       directories.
+
+       Mandatory arguments to long options are mandatory for
+       short options too.

@@ -1,0 +1,34 @@
+ctrl-a 跳到行首
+ctrl-e 跳到行尾
+ctrl-r 打开搜索模式 
+esc #猜测是退出搜索模式 (需要多按几次)
+ctrl-u 从当前光标开始删除至行尾
+ctrl-w 删除光标后的一个单词
+ctrl-left-arrow 光标向左移动一个单词
+change to vim
+input in .zshrc
+export EDITOR="vim"
+bindkey -v
+change back to emacs
+#export EDITOR="vim"
+#bindkey -v
+1.List the hidden files in a directory.
+
+
+
+Solution
+
+
+You can list all files, including hidden ones, in a directory using the -a flag.
+$ ls -a
+.   .bash_history  .bash_profile  .cache   .gem    .npm
+..  .bash_logout   .bashrc        .config  .local  .profile
+
+
+To only list hidden (also called dotfiles), you can use the following command:
+$ ls -d .*
+.   .bash_history  .bash_profile  .cache   .gem    .npm  .viminfo
+..  .bash_logout   .bashrc        .config  .local  .profile  .ssh
+autojump 
+    目录浏览和跳转：输入d，就显示在会话里访问的目录列表，输入列表前的序号，即可以跳转
+

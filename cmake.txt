@@ -1,0 +1,14 @@
+文件名必须为：CmakeLists.txt
+常用命令
+cmake_minimum_required(VERSION 3.4)
+add_executable
+project
+install
+include_directories
+    list of preprocessor include file search directories.
+set
+target_link_libraries
+add_subdirectory
+    add a subdirectory to the build
+    add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])
+

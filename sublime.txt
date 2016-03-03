@@ -1,0 +1,5 @@
+project usage
+    用Sublime Text打开一个目录
+    然后一次点击Project --> Save Project As... --> 选择Project文件的存放位置 --> 输入Project名字 --> OK.
+    tips sublime快捷方式在dock上，打开finder，找到你项目文件夹，按住项目文件夹，往sublime上拖。拖到图标上，放。这个项目就自动用sublime打开了。
+    每次切换Project或目录直接ctrl + alt + p, 然后选择. 真是太方便了.

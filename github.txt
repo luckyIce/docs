@@ -1,0 +1,619 @@
+https://guides.github.com/features/mastering-markdown/
+learn makrdown
+sudo apt-get install git
+
+
+git init 
+ls -a
+git status
+
+
+git add README
+git commit -m "1st"
+
+
+git config --global user.name "Peter Wang"
+git config --global user.email "happypeter1983@gmail.com"
+git log
+git log -p
+
+
+sudo apt-get install tig
+
+
+git commit -a
+git diff
+
+
+git config --global core.editor vim
+git commit -a -v 
+git config --global alias.ci "commit -a -v"
+
+
+[user]
+    name = Peter Wang
+    email = happypeter1983@gmail.com
+[core]#if editor is not set ,it is emacs style
+    editor = vim
+[alias]
+    ci = commit -a -v
+version control ".vimrc" using git
+    cd ~;mkdir config_files;cd config_files;ln -s ~/.vimrc .;git init;
+NAME
+git-stash - Stash the changes in a dirty working
+directory away
+CRIPTION
+state of the working directory and the index, but
+command saves your local modifications away and
+reverts the working directory to match the HEAD
+commit.
+git stash(put down work on hand and do some other work);(do some work);git stash apply(turn to origin work);
+git add .
+usage add multiple files or remove multiple files easily
+keep in mind that this can make sense if you write ".gitignore",if no ".gitignore"file in your git repository you may add some files you don't want to add.
+what you should do in process"git init"
+you should configure ssh before you push you repository to the github
+mv .ssh ssh.bak
+ssh-keygen
+ls
+output of ls 
+id_rsa id_rsa.pub
+vi id_rsa.pub
+paste the public key to the github
+
+Generating SSH keys
+SSH keys are a way to identify trusted computers, without involving passwords. The steps below will walk you through generating an SSH key and adding the public key to your GitHub account.
+
+We recommend that you regularly review your SSH keys list and revoke any that haven't been used in a while.
+
+Step 1: Check for SSH keys
+
+First, we need to check for existing SSH keys on your computer. Open Terminal and enter:
+$ ls -al ~/.ssh
+# Lists the files in your .ssh directory, if they exist
+
+
+Check the directory listing to see if you already have a public SSH key. By default, the filenames of the public keys are one of the following:
+id_dsa.pub
+id_ecdsa.pub
+id_ed25519.pub
+id_rsa.pub
+
+If you see an existing public and private key pair listed (for example id_rsa.pub and id_rsa) that you would like to use to connect to GitHub, you can skip Step 2 and go straight to Step 3.
+
+
+Tip: If you receive an error that ~/.ssh doesn't exist, don't worry! We'll create it in Step 2.
+
+Step 2: Generate a new SSH key
+ 
+1.With Terminal still open, copy and paste the text below. Make sure you substitute in your GitHub email address.
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+# Creates a new ssh key, using the provided email as a label
+Generating public/private rsa key pair.
+you can run just run ssh-keygen command in zsh 
+
+.
+2.We strongly suggest keeping the default settings as they are, so when you're prompted to "Enter a file in which to save the key", just press Enter to continue.
+Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+
+.
+3.You'll be asked to enter a passphrase.
+Enter passphrase (empty for no passphrase): [Type a passphrase]
+Enter same passphrase again: [Type passphrase again]
+
+
+
+Tip: We strongly recommend a very good, secure passphrase. For more information, see "Working with SSH key passphrases".
+.
+4.After you enter a passphrase, review the fingerprint, or id, of your SSH key. For OpenSSH 6.7 or older:
+Your identification has been saved in /Users/you/.ssh/id_rsa.
+Your public key has been saved in /Users/you/.ssh/id_rsa.pub.
+The key fingerprint is:
+01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com
+
+
+
+.
+
+Step 3: Add your key to the ssh-agent
+
+To configure the ssh-agent program to use your SSH key:
+1 
+Ensure ssh-agent is enabled:
+# start the ssh-agent in the background
+$ eval "$(ssh-agent -s)"
+Agent pid 59566
+
+.
+2 
+Add your SSH key to the ssh-agent:
+$ ssh-add ~/.ssh/id_rsa
+
+.
+ 
+
+Tip: If you didn't generate a new SSH key in Step 2, and used an existing SSH key instead, you will need to replace id_rsa in the above command with the name of your existing private key file.
+
+Step 4: Add your SSH key to your account
+
+To configure your GitHub account to use your SSH key:
+
+Copy the SSH key to your clipboard. Keep in mind that your key may also be named id_dsa.pub, id_ecdsa.pub or id_ed25519.pub, in which case you change the filename below:
+$ sudo apt-get install xclip
+# Downloads and installs xclip. If you don't have `apt-get`, you might need to use another installer (like `yum`)
+
+$ xclip -sel clip < ~/.ssh/id_rsa.pub
+# Copies the contents of the id_rsa.pub file to your clipboard
+
+ 
+
+Warning: It's important to copy the key exactly without adding newlines or whitespace.
+
+Add the copied key to GitHub:
+1Settings icon in the user barIn the top right corner of any page, click your profile photo, then click Settings. .
+2
+SSH keysIn the user settings sidebar, click SSH keys. 
+.
+3
+SSH Key buttonClick Add SSH key. 
+.
+4In the Title field, add a descriptive label for the new key. For example, if you're using a personal Mac, you might call this key "Personal MacBook Air"..
+5The key fieldPaste your key into the "Key" field. .
+6The Add key buttonClick Add key. .
+7Confirm the action by entering your GitHub password..
+you should use scp to downloads your remote computer's id_rsa.pub if you can not use xmanager
+
+升级了git的版本之后，执行git push突然出现了一条警告，内容如下：
+
+warning: push.default is unset; its implicit value is changing in Git 2.0 from 'matching' to 'simple'. To squelch this messageand maintain the current behavior after the default changes, use:
+
+git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode 'current' instead of 'simple' if you sometimes use older versions of Git)
+
+警告的内容是push.default没有设置。
+
+看了一下push.default，可以设置为：nothing, matching, upstream, simple, current这些值。
+
+nothing:不推任何东西(要来做什么用？)。
+
+matching：将两边名字能匹配的分支推上去。
+
+upstream：将当前分支推到它的upstream分支。
+
+simple：将当前分支推到它的upstream分支，但名字不匹配时拒绝。这是最安全的选项并且git 2.0之后会默认为这个。
+
+current：将当前分支推到与它同名的分支上。
+happypeter
+http://haoduoshipin.com/v/10
+vim .git/config
+vim .git/refs/remote/origin/master
+git fetch origin
+git rebase origin/master
+people can also use
+
+git pull --rebase
+
+
+instead of
+
+git fetch origin/master
+git rebase origin/master
+
+ 
+
+
+camelsong  3 年多前  
+
+git rebase -i master 合并多个commit真的很cool。
+ 学习了，非常感谢。
+<<<<<<< HEAD
+The Role of Reset
+
+So the reset command makes more sense when viewed in this context. It directly manipulates these three trees in a simple and predictable way. It does up to three basic operations.
+
+Step 1: Moving HEAD killing me --soft ly 
+
+The first thing reset will do is move what HEAD points to. Unlike checkout it does not move what branch HEAD points to, it directly changes the SHA of the reference itself. This means if HEAD is pointing to the 'master' branch, running git reset 9e5e6a4 will first of all make 'master' point to 9e5e6a4 before it does anything else. 
+No matter what form of reset with a commit you invoke, this is the first thing it will always try to do. If you add the flag --soft, this is the only thing it will do. With --soft, reset will simply stop there.
+
+Now take a second to look at that diagram and realize what it did. It essentially undid the last commit you made. When you run git commit, Git will create a new commit and move the branch that HEAD points to up to it. When you reset back to HEAD~ (the parent of HEAD), you are moving the branch back to where it was without changing the Index (staging area) or Working Directory. You could now do a bit more work and commit again to accomplish basically what git commit --amend would have done.
+
+Step 2: Updating the Index having --mixed feelings 
+
+Note that if you run git status now you'll see in green the difference between the Index and what the new HEAD is.
+
+The next thing reset will do is to update the Index with the contents of whatever tree HEAD now points to so they're the same.
+If you specify the --mixed option, reset will stop at this point. This is also the default, so if you specify no option at all, this is where the command will stop.
+
+Now take another second to look at THAT diagram and realize what it did. It still undid your last commit, but also unstaged everything. You rolled back to before you ran all your git adds AND git commit. 
+
+Step 3: Updating the Working Directory math is --hard, let's go shopping 
+
+The third thing that reset will do is to then make the Working Directory look like the Index. If you use the --hard option, it will continue to this stage.
+Finally, take yet a third second to look at that diagram and think about what happened. You undid your last commit, all the git adds, and all the work you did in your working directory.
+
+It's important to note at this point that this is the only way to make the reset command dangerous (ie: not working directory safe). Any other invocation of reset can be pretty easily undone, the --hard option cannot, since it overwrites (without checking) any files in the Working Directory. In this particular case, we still have v3 version of our file in a commit in our Git DB that we could get back by looking at our reflog, but if we had not committed it, Git still would have overwritten the file.
+
+Overview
+
+That is basically it. The reset command overwrites these three trees in a specific order, stopping when you tell it to. 
+•#1) Move whatever branch HEAD points to (stop if --soft) 
+•#2) THEN, make the Index look like that (stop here unless --hard) 
+•#3) THEN, make the Working Directory look like that 
+http://git-scm.com/2011/07/11/reset.html
+Introduction
+
+This is a tutorial on the Git version control system.
+
+Git is quickly becoming one of the most popular version control systems in use. There are plenty of tutorials on Git already. How is this one different?
+
+A Story
+
+When I first started using Git, I read plenty of tutorials, as well as the user manual. Though I picked up the basic usage patterns and commands, I never felt like I grasped what was going on “under the hood,” so to speak. Frequently this resulted in cryptic error messages, caused by my random guessing at the right command to use at a given time. These difficulties worsened as I began to need more advanced (and less well documented) features.
+
+After a few months, I started to understand those under-the-hood concepts. Once I did, suddenly everything made sense. I could understand the manual pages and perform all sorts of source control tasks. Everything that seemed so cryptic and obscure now was perfectly clear.
+
+Understanding Git
+
+The conclusion I draw from this is that you can only really use Git if you understand how Git works. Merely memorizing which commands you should run at what times will work in the short run, but it’s only a matter of time before you get stuck or, worse, break something.
+
+Half of the existing resources on Git, unfortunately, take just that approach: they walk you through which commands to run when, and expect that you should do fine if you just mimic those commands. The other half does go through all the concepts, but from what I have seen, they explain Git in a manner that assumes you already understand how Git works.
+
+
+
+This tutorial, then, will take a conceptual approach to Git. My goal will be, first and foremost, to explain the Git universe and its objectives, and secondarily to illustrate how to use Git commands to manipulate that universe.
+•I will begin by describing the Git data model, the repository.
+•From there I will describe the various operations Git provides for manipulating the repository, starting from the simplest (adding data to a repository) and moving through the more complex operations of branching and merging.
+•I will then discuss how to use Git in a collaborative setting.
+•Finally I will look at the Git rebase function, which provides an alternative to merging, and consider its pros and cons.
+Repository Contents
+
+The purpose of Git is to manage a project, or a set of files, as they change over time. Git stores this information in a data structure called a repository.
+
+A git repository contains, among other things, the following:
+•A set of commit objects.
+•A set of references to commit objects, called heads.
+
+The Git repository is stored in the same directory as the project itself, in a subdirectory called .git. Note differences from central-repository systems like CVS or Subversion:
+•There is only one .git directory, in the root directory of the project.
+•The repository is stored in files alongside the project. There is no central server repository.
+
+Commit Objects
+
+A commit object contains three things:
+•A set of files, reflecting the state of a project at a given point in time.
+•References to parent commit objects.
+•An SHA1 name, a 40-character string that uniquely identifies the commit object. The name is composed of a hash of relevant aspects of the commit, so identical commits will always have the same name.
+
+The parent commit objects are those commits that were edited to produce the subsequent state of the project. Generally a commit object will have one parent commit, because one generally takes a project in a given state, makes a few changes, and saves the new state of the project. The section below on merges explains how a commit object could have two or more parents.
+
+A project always has one commit object with no parents. This is the first commit made to the project repository.
+
+Based on the above, you can visualize a repository as a directed acyclic graph of commit objects, with pointers to parent commits always pointing backwards in time, ultimately to the first commit. Starting from any commit, you can walk along the tree by parent commits to see the history of changes that led to that commit.
+
+The idea behind Git is that version control is all about manipulating this graph of commits. Whenever you want to perform some operation to query or manipulate the repository, you should be thinking, “how do I want to query or manipulate the graph of commits?”
+
+Heads
+
+A head is simply a reference to a commit object. Each head has a name. By default, there is a head in every repository called master. A repository can contain any number of heads. At any given time, one head is selected as the “current head.” This head is aliased to HEAD, always in capitals.
+
+Note this difference: a “head” (lowercase) refers to any one of the named heads in the repository; “HEAD” (uppercase) refers exclusively to the currently active head. This distinction is used frequently in Git documentation. I also use the convention that names of heads, including HEAD, are set in italics.
+
+A Simple Repository
+
+To create a repository, create a directory for the project if it doesn’t exist, enter it, and run the command git init. The directory does not need to be empty.
+
+mkdir [project]
+cd [project]
+git init
+
+
+This will create a .git directory in the [project] directory.
+
+To create a commit, you need to do two things:
+1.Tell Git which files to include in the commit, with git add. If a file has not changed since the previous commit (the “parent” commit), Git will automatically include it in the commit you are about to perform. Thus, you only need to add files that you have newly created or modified. Note that it adds directories recursively, so git add . will add everything that has changed.
+2.Call git commit to create the commit object. The new commit object will have the current HEAD as its parent (and then, after the commit is complete, HEAD will point to the new commit object).
+
+As a shortcut, git commit -a will automatically add all modified files (but not new ones).
+
+Note that if you modify a file but do not add it, then Git will include the previous version (before modifications) to the commit. The modified file will remain in place.
+
+Say you create three commits this way. Your repository will look like this:
+
+---->  time  ----->
+
+(A) <-- (B) <-- (C)
+                 ^
+                 |
+               master
+                 ^
+                 |
+                HEAD
+
+
+where (A), (B), and (C) are the first, second, and third commits, respectively.
+
+Other commands that are useful at this point:
+•git log shows a log of all commits starting from HEAD back to the initial commit. (It can do more than that, of course.)
+•git status shows which files have changed between the current project state and HEAD. Files are put in one of three categories: new files that haven’t been added (with git add), modified files that haven’t been added, and files that have been added.
+•git diff shows the diff between HEAD and the current project state. With the --cached option it compares added files against HEAD; otherwise it compares files not yet added.*
+•git mv and git rm mark files to be moved (rename) and removed, respectively, much like git add.
+
+*More precisely, git diff compares the staging area, that is, HEAD as modified by all added files, against the current state of all added files. Thus, if you add some but not all changed files and then run git diff, you will see only files that are changed but not added.
+
+My personal workflow usually looks like:
+1.Do some programming.
+2.git status to see what files I changed.
+3.git diff [file] to see exactly what I modified. 
+4.git commit -a -m [message] to commit. 
+
+Referring to a Commit
+
+Now that you’ve created commits, how do you refer to a specific commit? Git provides many ways to do so. Here are a few:
+•By its SHA1 name, which you can get from git log. 
+•By the first few characters of its SHA1 name. 
+•By a head. For example, HEAD refers to the commit object referenced by HEAD. You can also use the name, such as master. 
+•Relative to a commit. Putting a caret (^) after a commit name retrieves the parent of that commit. For example, HEAD^ is the parent of the current head commit. 
+In This Section
+•The Purpose of Branching
+•Creating a Branch
+•Switching Between Branches
+•Related Commands
+•Common Branching Use Patterns
+
+The Purpose of Branching
+
+Say you are working on a paper. You’ve gotten a first draft out, submitted for review. You then get a new batch of data, and you’re in the process of integrating it into the paper. Halfway in, however, the review committee calls you up and tells you that you need to change some of your section headings to conform to format specifications. What do you do?
+
+Obviously you don’t want to send them your half-baked revisions with corrected headings. What you want to do is jump back to the version you sent out, change the headings on that version, and send off that copy, all the while keeping your recent work safely stored somewhere else.
+
+This is the idea behind branching, and Git makes it easy to do.
+
+Note on terminology: The terms “branch” and “head” are nearly synonymous in Git. Every branch is represented by one head, and every head represents one branch. Sometimes, “branch” will be used to refer to a head and the entire history of ancestor commits preceding that head, whereas “head” will be used to refer exclusively to a single commit object, the most recent commit in the branch.
+
+Creating a Branch
+
+To create a branch, say your repository looks like this:
+
+(A) -- (B) -- (C)
+               |
+             master
+               |
+              HEAD
+
+
+where (B) was the version you sent to the conference and (C) is your new revision state. (I’m dropping the arrowheads because they always point to the left.)
+
+To jump back to commit (B) and start new work from there, you first need to know how to reference the commit. You could either use git log to get the SHA1 name of (B), or you could use HEAD^ to retrieve it (as you will remember from the previous page, HEAD^ means the parent of the HEAD commit).
+
+Now, we use the git branch command: 
+
+git branch [new-head-name] [reference-to-(B)]
+
+
+or, for example: 
+
+git branch fix-headers HEAD^
+
+
+This command will create a new head with the given name, and point that head at the requested commit object. If the commit object is left out, it will point to HEAD. 
+
+Now our commit tree looks like this: 
+
+(A) -- (B) ------- (C)
+        |           |
+   fix-headers    master
+                    |
+                   HEAD
+
+
+Switching Between Branches
+
+In order to start working on the headers, you need to set the fix-headers head to be the current head. This is done with git checkout: 
+
+git checkout [head-name]
+
+
+This command does the following:
+•Points HEAD to the commit object specified by [head-name]
+•Rewrites all the files in the directory to match the files stored in the new HEAD commit.
+
+Important note: if there are any uncommitted changes when you run git checkout, Git will behave very strangely. The strangeness is predictable and sometimes useful, but it is best to avoid it. All you need to do, of course, is commit all the new changes before checking out the new head.
+
+After checking out the fix-headers head, you fix the headers. Now you add and commit the changes as above. The resulting repository looks like this:
+
+         +-------------- (D)
+        /                 |
+(A) -- (B) -- (C)         |
+               |          |
+             master  fix-headers
+                          |
+                         HEAD
+
+
+(You can see now why it’s called “branching”: the commit tree has grown a new branch. Note that the angle of the line connecting (B) and (D) is irrelevant; pointers do not store whether they are horizontal or slanted.)
+
+The ancestry of master is (C), (B), (A). The ancestry of fix-headers is (D), (B), (A). You can see this with git log.
+
+Related Commands
+
+Other useful commands at this point:
+•git branch with no arguments lists the existing heads, with a star next to the current head.
+•git diff [head1]..[head2] shows the diff between the commits referenced by head2 and head1.
+•git diff [head1]...[head2] (three dots) shows the diff between head2 and the common ancestor of head1 and head2. For example, diff master...fix-headers above would show the diff between (D) and (B). 
+•git log [head1]..[head2] shows the change log between head2 and the common ancestor of head1 and head2. With three dots, it also shows the changes between head1 and the common ancestor; this is not so useful. (Switching head1 and head2, on the other hand, is very useful.)
+
+Common Branching Use Patterns
+
+A common way to use Git branching is to maintain one “main” or “trunk” branch and create new branches to implement new features. Often the default Git branch, master, is used as the main branch.
+
+So, in the example above, it may have been better to leave master at (B), where the paper was submitted to the reviewers. You could then start a new branch to store changes regarding new data.
+
+Ideally, in this pattern, the master branch is always in a releaseable state. Other branches will contain half-finished work, new features, and so on.
+
+This pattern is particularly important when there are multiple developers working on a single project. If all developers are adding commits in sequence to a single branch, then new features need to be added in a single commit, in order not to cause the branch to become unusable. However, if each developer creates a new branch to make a new feature, then commits can be made at any time, whether or not they are unfinished.
+
+This is what Git users mean when they say that commits are cheap. If you are working on your own branch, there is no reason you need to be particularly careful about what you commit to the repository. It won’t affect anything else.
+In This Section
+•Merging
+•Resolving Conflicts
+•Fast Forward Merges
+•Common Merge Use Patterns
+•Deleting a Branch
+
+Merging
+
+After you have finished implementing a new feature on a branch, you want to bring that new feature into the main branch, so that everyone can use it. You can do so with the git merge or git pull command. 
+
+The syntax for the commands is as follows: 
+
+git merge [head]
+git pull . [head]
+
+
+They are identical in result. (Though the merge form seems simpler for now, the reason for the pull form will become apparent when discussing multiple developers.) 
+
+These commands perform the following operations. Let the current head be called current, and the head to be merged called merge. 
+1.Identify the common ancestor of current and merge. Call it ancestor-commit.
+2.Deal with the easy cases. If the ancestor-commit equals merge, then do nothing. If ancestor-commit equals current, then do a fast forward merge.
+3.Otherwise, determine the changes between the ancestor-commit and merge.
+4.Attempt to merge those changes into the files in current.
+5.If there were no conflicts, create a new commit, with two parents, current and merge. Set current (and HEAD) to point to this new commit, and update the working files for the project accordingly.
+6.If there was a conflict, insert appropriate conflict markers and inform the user. No commit is created.
+
+Important note: Git can get very confused if there are uncommitted changes in the files when you ask it to perform a merge. So make sure to commit whatever changes you have made so far before you merge.
+
+So, to complete the above example, say you check out the master head again and finish writing up the new data for your paper. Now you want to bring in those changes you made to the headers.
+
+The repository looks like this:
+
+         +---------- (D)
+        /             |
+(A) -- (B) -- (C) -------------- (E)
+                      |           |
+                 fix-headers    master
+                                  |
+                                 HEAD
+
+
+where (E) is the commit reflecting the completed version with the new data.
+
+You would run:
+
+git merge fix-headers
+
+
+If there are no conflicts, the resulting respository looks like this:
+
+         +---------- (D) ---------------+
+        /             |                  \
+(A) -- (B) -- (C) -------------- (E) -- (F)
+                      |                  |
+                 fix-headers           master
+                                         |
+                                        HEAD
+
+
+The merge commit is (F), having parents (D) and (E). Because (B) is the common ancestor between (D) and (E), the files in (F) should contain the changes between (B) and (D), namely the heading fixes, incorporated into the files from (E).
+
+Note on terminology: When I say “merge head A into head B,” I mean that head B is the current head, and you are drawing changes from head A into it. Head B gets updated; nothing is done to head A. (If you replace the word “merge” with the word “pull,” it may make more sense.)
+
+Resolving Conflicts
+
+A conflict arises if the commit to be merged in has a change in one place, and the current commit has a change in the same place. Git has no way of telling which change should take precedence.
+
+To resolve the commit, edit the files to fix the conflicting changes. Then run git add to add the resolved files, and run git commit to commit the repaired merge. Git remembers that you were in the middle of a merge, so it sets the parents of the commit correctly.
+
+Fast Forward Merges
+
+A fast forward merge is a simple optimization for merging. Say your repository looks like this:
+
+                +-- (D) -- (E)
+               /            |
+(A) -- (B) -- (C)           |
+               |            |
+            current     to-merge
+               |
+              HEAD
+
+
+and you run git merge to-merge. In this case, all Git needs to do is set current to point to (E). Since (C) is the common ancestor, there are no changes to actually “merge.”
+
+Hence, the resulting merged repository looks like:
+
+                +-- (D) -- (E)
+               /            |
+(A) -- (B) -- (C)           |
+                            |
+                    to-merge, current
+                                 |
+                                HEAD
+
+
+That is, to-merge and current both point to commit (E), and HEAD still points to current.
+
+Note an important difference: no new commit object is created for the merge. Git only shifts the head pointers around.
+
+Common Merge Use Patterns
+
+There are two common reasons to merge two branches. The first, as explained above, is to draw the changes from a new feature branch into the main branch.
+
+The second use pattern is to draw the main branch into a feature branch you are developing. This keeps the feature branch up to date with the latest bug fixes and new features added to the main branch. Doing this regularly reduces the risk of creating a conflict when you merge your feature into the main branch.
+
+One disadvantage of doing the above is that your feature branch will end up with a lot of merge commits. An alternative that solves this problem is rebasing, although that comes with problems of its own.
+
+Deleting a Branch
+
+After you have merged a development branch into the main branch, you probably don’t need the development branch anymore. Hence, you may want to delete it so it doesn’t clutter your git branch listing.
+
+To delete a branch, use git branch -d [head]. This simply removes the specified head from the repository’s list of heads.
+
+For example, in this repository from above:
+
+         +---------- (D) ---------------+
+        /             |                  \
+(A) -- (B) -- (C) -------------- (E) -- (F)
+                      |                  |
+                 fix-headers           master
+                                         |
+                                        HEAD
+
+
+we probably don’t need the fix-headers head any more. So we can use:
+
+git branch -d fix-headers
+
+
+and the resulting repository looks like:
+
+         +---------- (D) ---------------+
+        /                                \
+(A) -- (B) -- (C) -------------- (E) -- (F)
+                                         |
+                                       master
+                                         |
+                                        HEAD
+
+
+Important note: git branch -d will cause an error if the branch to be deleted is not reachable from another head. Why? Consider the following repository:
+
+         +----------- (E)
+        /              |
+(A) -- (B) -- (C)      |
+               |       |
+             head1   head2
+
+
+Say you delete head2. Now how can you use commit (E)? You can’t check it out, because it isn’t a head. And it doesn’t appear in any logs or anywhere else, because it isn’t an ancestor of head1. So commit (E) is practically useless. In Git terminology, it is a “dangling commit,” and its information is lost.
+
+Git does allow you to use the -D option to force deletion of a branch that would create a dangling commit. However, it should be a rare situation that you want to do that. Think very carefully before using git branch -D.
+git clone has two ways which are from http and from ssh
+git clone https://github.com/felixangell/mac.git
+git clone git@github.com:felixangell/mac.git
+=======
+>>>>>>> 520dd5a326736987f7a946e1305b2b2dd9774e2c

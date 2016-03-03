@@ -1,0 +1,36 @@
+how to use help in vim
+:h fold
+Suppose you have created several folds, and now want to view all the text.
+You could go to each fold and type "zo".  To do this faster, use this command:
+
+        zr
+
+        This will R-educe the folding.  The opposite is:
+
+        zm
+
+        This folds M-ore.  You can repeat "zr" and "zm" to open and close nested folds
+        of several levels.
+use gg command to go to the bottom of the manual
+find use_28.txt in the window
+move cursor to usr_28.txt
+press ctrl+] to go to usr_28.txt
+ctags
+:ptag 函数名
+p is short for preview
+:pta[g][!] [tagname]                                                                                                       
+                Does ":tag[!] [tagname]" and shows the found tag in a
+                "Preview" window without changing the current buffer or cursor
+                position.  If a "Preview" window already exists, it is re-used
+                (like a help window is).  If a new one is opened,
+                'previewheight' is used for the height of the window.   See
+                also :tag.          
+<C-W>s水平分屏(两个屏幕的分界线为水平方向)
+<C-W>v竖直分屏(两个屏幕的分界线为竖直方向)
+vim的应用
+打开一个vi缓冲区，在里面输入将要执行的命令，使用:.w !zsh执行
+具体如下：
+1 touch a.cpp a.h 
+2 回到命令模式
+3 输入：打开命令行模式
+4 使用快捷键ctrl+f打开命令行窗口，在里面找到.w !zsh行输入enter执行 '.'表示当前行

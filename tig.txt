@@ -1,0 +1,16 @@
+view switching
+     'm'                       view-main            Show main~
+     'd'                       view-diff            Show diff~ # this is mainly used
+     'l'                       view-log             Show log ~ # this is mainly used
+     't'                       view-tree            Show tree~ # this is mainly used
+     'f'                       view-blob            Show blob~ # this is mainly used
+     'H'                       view-branch          Show bran~
+     'h'                       view-help            Show help~
+     'S'                       view-status          Show stat~ #this is upper character
+view manipulation
+Enter                     enter                Enter cur~
+down, '^N'                next                 Move to n~
+Up, '^P'                  previous             Move to p~
+'q'                       view-close           Close the~
+comment view-diff and enter are the same action as to displaying contents except that enter display contents in a new window wheres view-diff replace the output contents with the current displayed contents
+在你输入tig进入tig程序时最上面的staged那一项表示staged但没有commit的内容，并不包括unstaged内容，你可以找到unstaged那一项按下enter键查看unstaged内容

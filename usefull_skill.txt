@@ -1,0 +1,12 @@
+you can back file before you change some thing
+mv .ssh ssh.bak(backup)
+you can write commands in Readme.md and conduct shell commands in vi by w !zsh
+如果你要删除main函数里的内容那么你可以把光标移动到main函数的第一行使用d/return来删除
+vim的应用
+打开一个vi缓冲区，在里面输入将要执行的命令，使用:.w !zsh执行
+具体如下：
+1 touch a.cpp a.h 
+2 回到命令模式
+3 输入：打开命令行模式
+4 使用快捷键ctrl+f打开命令行窗口，在里面找到.w !zsh行输入enter执行 '.'表示当前行
+

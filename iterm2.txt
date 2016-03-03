@@ -1,0 +1,2 @@
+useless Copy
+Use the Find feature to begin searching for text. Press tab to expand the selection to the right or shift-tab to expand the selection to the left. Option-enter pastes the current match.
